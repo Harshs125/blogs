@@ -5,6 +5,8 @@ class ArticlesController < ApplicationController
 
     def show 
         @article=Article.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      redirect_to root_path
     end
 
     def new 
