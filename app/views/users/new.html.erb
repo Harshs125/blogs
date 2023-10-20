@@ -1,27 +1,25 @@
 <h1>Signup </h1>
 <%= form_with model: @user do |form| %>
+    <% if flash[:error].present? %>
+        <div class="error"><%= flash[:error] %></div>
+    <% end %>
     <div>
         <%= form.label :name %><br>
         <%= form.text_field :name%>
-        <% @user.errors.full_messages_for(:name).each do |message| %>
-        <div><%= message %></div>
-        <% end %>
     </div>
     <div>
         <%= form.label :email %><br>
         <%= form.text_area :email %>
-        <% @user.errors.full_messages_for(:email).each do |message| %>
-        <div><%= message %></div>
-        <% end %>
     </div>
     <div>
         <%= form.label :password %><br>
         <%= form.text_area :password %>
-        <% @user.errors.full_messages_for(:password).each do |message| %>
-        <div><%= message %></div>
-        <% end %>
     </div>
     <div>
-    <%= form.submit%>
+        <%= form.label :confirm_password %><br>
+        <%= form.text_area :confirm_password %>
+    </div>
+    <div>
+        <%= form.submit%>
     </div>
 <%end%>
