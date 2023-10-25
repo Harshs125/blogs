@@ -18,11 +18,13 @@ class UsersController < ApplicationController
       puts params_except_confimpassword
       @user=User.new(params_except_confimpassword)
       if @user.save()
+        UserMailer.with(user: @user).welcome_email.deliver_now
+        
         redirect_to @user
+      else
+        flash.now[:error] = "Password and confirmation do not match."
+        render :new, status: :unprocessable_entity
       end
-    else
-      flash.now[:error] = "Password and confirmation do not match."
-      render :new, status: :unprocessable_entity
     end
   end
 
