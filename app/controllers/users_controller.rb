@@ -17,9 +17,10 @@ class UsersController < ApplicationController
       params_except_confimpassword=user_params.except(:confirm_password)
       puts params_except_confimpassword
       @user=User.new(params_except_confimpassword)
+      @user.activation_token = SecureRandom.urlsafe_base64
+      @user.activated=false
       if @user.save()
         UserMailer.with(user: @user).welcome_email.deliver_now
-        
         redirect_to @user
       else
         flash.now[:error] = "Password and confirmation do not match."

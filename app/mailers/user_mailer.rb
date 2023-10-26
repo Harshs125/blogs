@@ -3,7 +3,8 @@ class UserMailer < ApplicationMailer
     
     def welcome_email
         @user = params[:user]
-        @url = 'http://127.0.0.1:3000/users/new'
+        @activation_token = @user.activation_token
+        @activation_url = edit_activation_url(@activation_token,host: 'localhost:3000')        
         mail(to: @user.email,subject: 'Welcome to Blog website ')
     end
 end

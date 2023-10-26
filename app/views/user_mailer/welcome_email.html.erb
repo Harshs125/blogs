@@ -9,7 +9,8 @@
       your username is: <%= @user.name %>.<br>
     </p>
     <p>
-      To login to the site, just follow this link: <%= @url %>.
+      To Activate your account just follow this link:
+      <%= link_to "Activate Account", @activation_url %>
     </p>
     <p>Thanks for joining and have a great day!</p>
     

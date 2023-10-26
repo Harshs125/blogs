@@ -79,9 +79,11 @@ Rails.application.configure do
     port:            587,
     domain:          'example.com',
     user_name: ENV["MAILER_EMAIL"],
-    password: ENV["MAILER_PASSWORD"]
+    password: ENV["MAILER_PASSWORD"],
     authentication:  'plain',
     enable_starttls: true,
     open_timeout:    5,
     read_timeout:    5 }
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
 end
